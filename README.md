@@ -80,9 +80,13 @@ Kontrat KVKK uyumlu olacak şekilde zincire yalnızca hash ve meta veriler
 yazar.
 
 Desteklenen fonksiyonlar:
+
 issue()  --  Yeni sertifika oluşturur
+
 revoke() --  Sertifikayı iptal eder 
+
 verify() --  Geçerlilik sorgusu döner
+
 
 ## İstemci (Client)
 
