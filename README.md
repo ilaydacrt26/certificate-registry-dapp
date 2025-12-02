@@ -21,25 +21,23 @@ geçmek\
 Sistem Docker Compose üzerinde **certnet** adında özel bir ağda çalışan
 üç servisten oluşur:
 
-  -----------------------------------------------------------------------
-  Servis                          Açıklama
-  ------------------------------- ---------------------------------------
-  ganache                         Yerel EVM uyumlu blockchain düğümü
+  
+  Servis            --            Açıklama
+  ganache           --            Yerel EVM uyumlu blockchain düğümü
 
-  hardhat                         Kontratların derlenmesi, deploy ve test
+  hardhat           --            Kontratların derlenmesi, deploy ve test
                                   için geliştirme ortamı
 
-  client                          Sertifika hash üretimi, kontrat ile
+  client            --            Sertifika hash üretimi, kontrat ile
                                   etkileşim ve doğrulama CLI'ı
-  -----------------------------------------------------------------------
-
+                                  
 ## Bileşenler
 
--   Docker Desktop + Compose v2\
--   Node.js 20\
--   Hardhat\
--   Ethers.js\
--   Ganache\
+-   Docker Desktop + Compose v2
+-   Node.js 20
+-   Hardhat
+-   Ethers.js
+-   Ganache
 -   Node.js tabanlı CLI
 
 ## Kurulum
@@ -78,10 +76,10 @@ Sistem Docker Compose üzerinde **certnet** adında özel bir ağda çalışan
 Kontrat KVKK uyumlu olacak şekilde zincire yalnızca hash ve meta veriler
 yazar.
 
-Desteklenen fonksiyonlar: \| Fonksiyon \| Açıklama \|
-\|----------\|----------\| \| issue() \| Yeni sertifika oluşturur \| \|
-revoke() \| Sertifikayı iptal eder \| \| verify() \| Geçerlilik sorgusu
-döner \|
+Desteklenen fonksiyonlar:
+issue()  --  Yeni sertifika oluşturur
+revoke() --  Sertifikayı iptal eder 
+verify() --  Geçerlilik sorgusu döner
 
 ## İstemci (Client)
 
