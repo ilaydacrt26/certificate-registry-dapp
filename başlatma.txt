@@ -1,0 +1,42 @@
+# 1️⃣ Proje dizinine git
+cd C:\Users\İlayda\Desktop\blokchain_sertifika
+
+# 2️⃣ Docker container’larını başlat
+docker compose up -d --build
+
+# 3️⃣ Hardhat container’a gir (service adı: hardhat)
+docker compose exec hardhat sh
+
+# 4️⃣ Node modüllerini yükle (ilk sefer)
+npm install
+
+# 5️⃣ Smart contract deploy et
+npx hardhat run scripts/deploy.js --network localhost
+# Çıktıdaki contract adresini client/.env dosyasındaki CONTRACT_ADDRESS kısmına yaz
+
+# 6️⃣ Hardhat container’dan çık (opsiyonel)
+exit
+
+# 7️⃣ Client container’a gir (service adı: client)
+docker compose exec client sh
+
+# 8️⃣ Client bağımlılıklarını yükle (ilk sefer)
+npm install
+
+# 9️⃣ Client’ı başlat ve kontratla etkileşime geç
+npm start
+# Örnek çıktı:
+# Client started
+# RPC URL: http://ganache:8545
+# Chain ID: 1337
+# Contract Address: 0x...
+# Example account balance: 999.9977 ETH
+
+# 🔁 Yeni kontrat deploy etmek istersen (Hardhat üzerinden)
+docker compose exec hardhat sh
+npx hardhat run scripts/deploy.js --network localhost
+# Yeni adresi client/.env içine yazmayı unutma
+
+# Ardından client'ı tekrar çalıştır:
+docker compose exec client sh
+npm start

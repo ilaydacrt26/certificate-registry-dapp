@@ -1,0 +1,41 @@
+# Node modules
+client/node_modules/
+dapp/node_modules/
+
+# Environment files
+client/.env
+dapp/.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Hardhat artifacts & cache
+dapp/artifacts/
+dapp/cache/
+dapp/typechain/
+dapp/typechain-types/
+
+# Docker files generated during runtime
+*.pid
+*.seed
+
+# Dist / build outputs
+client/dist/
+client/build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor config files
+.vscode/
+.idea/
+
+# Optional backup files
+*.bak
+*.tmp

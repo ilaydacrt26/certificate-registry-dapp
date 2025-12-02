@@ -1,0 +1,78 @@
+services:
+  # Yerel blockchain (Ganache)
+  ganache:
+    image: trufflesuite/ganache:latest
+    container_name: cert-ganache
+    command:
+      [
+        "--host", "0.0.0.0",
+        "--chain.chainId", "1337",
+        "--wallet.totalAccounts", "10",
+        "--wallet.defaultBalance", "1000",
+        "--miner.blockTime", "1",
+        "--database.dbPath", "/ganache_data",
+        "--wallet.mnemonic", "test test test test test test test test test test test junk"
+      ]
+    ports:
+      - "8545:8545"
+    volumes:
+      - ganache_data:/ganache_data
+    networks:
+      - certnet
+    # Healthcheck kaldırıldı, Docker Compose basit ve hızlı başlasın diye
+
+  # Hardhat geliştirme ortamı
+  hardhat:
+    image: node:20-alpine
+    container_name: cert-hardhat
+    working_dir: /workspace
+    volumes:
+      - ./dapp:/workspace
+    depends_on:
+      ganache:
+        condition: service_started
+    networks:
+      - certnet
+    environment:
+      - NODE_ENV=development
+    command: >
+      sh -c "
+        if [ ! -d node_modules ]; then
+          npm install
+        fi &&
+        echo 'Hardhat environment ready. Use: docker compose exec hardhat sh' &&
+        sleep infinity
+      "
+
+  # Client uygulaması (CLI)
+  client:
+    image: node:20-alpine
+    container_name: cert-client
+    working_dir: /app
+    volumes:
+      - ./client:/app
+    environment:
+      RPC_URL: http://ganache:8545
+      CHAIN_ID: 1337
+    depends_on:
+      hardhat:
+        condition: service_started
+    networks:
+      - certnet
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c "
+        if [ ! -d node_modules ]; then
+          npm install
+        fi &&
+        echo 'Client ready. Use: docker compose exec client sh' &&
+        sleep infinity
+      "
+
+networks:
+  certnet:
+    driver: bridge
+
+volumes:
+  ganache_data:

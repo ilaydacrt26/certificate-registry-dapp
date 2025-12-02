@@ -1,0 +1,12 @@
+{
+  "name": "dapp",
+  "version": "1.0.0",
+  "description": "Simple Hardhat project",
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "hardhat": "^2.27.0"
+  }
+}
