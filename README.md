@@ -23,10 +23,13 @@ Sistem Docker Compose üzerinde **certnet** adında özel bir ağda çalışan
 
   
   Servis            --            Açıklama
+  
   ganache           --            Yerel EVM uyumlu blockchain düğümü
+
 
   hardhat           --            Kontratların derlenmesi, deploy ve test
                                   için geliştirme ortamı
+                                  
 
   client            --            Sertifika hash üretimi, kontrat ile
                                   etkileşim ve doğrulama CLI'ı
